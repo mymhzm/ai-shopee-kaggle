@@ -32,3 +32,5 @@ if __name__ == "__main__":
     print(image_predictions)
 
     # 下面无非就是在embedding之后，调下match模型（余弦相似度及knn）的超参了，就是作者那个search函数
+    # 待搬运
+    # 最后就是将text和image_predictions的值做一个拼接就好
