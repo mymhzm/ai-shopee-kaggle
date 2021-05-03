@@ -5,7 +5,7 @@ from data import ShopeeDataset
 # embedding方法
 # ArcMarginProduct分类方法
 
-# 构建上层分类NN
+# 构建上层分类NN，只会在pretrainned或者finetuning时生效,
 class ArcMarginProduct(nn.Module):
     def __init__(self, in_features, out_features, scale=30.0, margin=0.50, easy_margin=False, ls_eps=0.0):
         super(ArcMarginProduct, self).__init__()
@@ -43,7 +43,7 @@ class ArcMarginProduct(nn.Module):
         return output, nn.CrossEntropyLoss()(output, label)
 
 
-# 构建EFF
+# 构建EFF embedding结构
 class ShopeeModel(nn.Module):
 
     def __init__(
@@ -91,6 +91,7 @@ class ShopeeModel(nn.Module):
         nn.init.constant_(self.bn.bias, 0)
 
     # model(input)默认调用该函数
+    # 注意看这里，如果已经练好，直接就用features了（也就是embedding的结果）
     def forward(self, image, label):
         features = self.extract_features(image)
         if self.training:
@@ -121,7 +122,7 @@ def get_test_transforms():
     ])
 
 
-# image embedding
+# image embedding 流程方法
 def get_image_embeddings(image_paths):
 
     model = ShopeeModel(pretrained=False).to(CFG.device)
