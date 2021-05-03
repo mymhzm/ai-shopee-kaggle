@@ -31,5 +31,9 @@ class CFG:
     num_workers = 4
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     # 作者提供的预训练模型
+    # https://www.kaggle.com/chienhsianghung/eff-b4-tfidf-w-cv-for-threshold-searching
+    # 拉到最下，找到这个finetune好的下载
     model_path = './model_saved/arcface_512x512_tf_efficientnet_b4_LR.pt'
-    #model_path = '../input/utils-shopee/arcface_512x512_tf_efficientnet_b4_LR.pt'
+
+    # 网上download的pretrained模型.pt .pth等
+    #model_path = '../model_saved/xxxxxxx.pt'

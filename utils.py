@@ -18,16 +18,10 @@ from torch.utils.data import Dataset,DataLoader
 
 import gc
 import matplotlib.pyplot as plt
-#import cudf
 import pandas as pd
-#import cupy
 import numpy as np
 
-#import cuml
-#from cuml.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-#from cuml import PCA #好像没有用到鸭
-#from cuml.neighbors import NearestNeighbors
 from sklearn.neighbors import NearestNeighbors
 
 
