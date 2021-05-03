@@ -152,6 +152,7 @@ def get_image_embeddings(image_paths):
 
 
 # 把embedding后的图形进行KNN匹配
+# KNN一般用来做分类，但是但是但是这里是借用了KNN的方法，来计算某个image最近的topk个image是哪些。
 def get_image_neighbors(df, embeddings, KNN=100, threshold=4.5, metric='minkowski'):
     if metric == 'cosine':
         model = NearestNeighbors(n_neighbors=KNN, metric=metric, n_jobs=8)
