@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     # 载入数据
     df, df_cu, image_paths = read_dataset(COMPUTE_CV)
-    df.head()
+    print(df.head())
 
     # 这里可以选择：1.直接使用embedding的结果
     #            2.重新对shopee的图片做embedding
