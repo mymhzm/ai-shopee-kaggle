@@ -2,7 +2,13 @@
 import pandas as pd
 import torch
 
-COMPUTE_CV = False # 是否只是进行cv计算（进行cv计算需要已有embedding）
+pd.set_option('display.max_columns', 1000000)   # 可以在大数据量下，没有省略号
+pd.set_option('display.max_rows', 1000000)
+pd.set_option('display.max_colwidth', 1000000)
+pd.set_option('display.width', 1000000)
+
+
+COMPUTE_CV = True # 是否只是进行cv计算（进行cv计算需要已有embedding）
 NEIGHBORS_SEARCHING = True
 SAVE_IMGEMBEDDING = True # 是否保存embedding结果
 BASELINE_CHECKING = True # 是否走一下baseline看看效果
@@ -13,7 +19,6 @@ IMG_COSINE = True
 df = pd.read_csv('./input/shopee-product-matching/test.csv')
 if len(df)>3:
     COMPUTE_CV = False
-
 if COMPUTE_CV:
     print('this submission notebook will compute CV score but commit notebook will not')
 else:
@@ -24,7 +29,7 @@ class CFG:
     classes = 11014
     scale = 30
     margin = 0.5
-    model_name =  'tf_efficientnet_b4'
+    model_name = 'tf_efficientnet_b4'
     fc_dim = 512
     img_size = 512
     batch_size = 20
