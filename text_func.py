@@ -28,7 +28,7 @@ def get_text_predictions(df, embeddings, max_features=25_000, threshold=0.75, PR
         cts = np.matmul(embeddings, embeddings[a:b].T).T
         for k in range(b - a):
             IDX = np.where(cts[k,] > threshold)[0]
-            o = df.iloc[np.asnumpy(IDX)].posting_id.values
+            o = df.iloc[IDX].posting_id.values #原本是cupy.asnumpy->np.asnumpy->IDX
             preds.append(o)
 
     return preds
