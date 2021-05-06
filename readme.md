@@ -72,7 +72,7 @@ Make sure your shopee data set is placed in shopee-product-matching
 Make sure that the embedding result of your shopee's image is placed in shopee-price-match-guarantee-embeddings
 Make sure your eff's pre-trained model/finetuned model is placed in model_saved  
 
-由于代码的相关文件体积太大，我们将其存放在google云盘上，请在此链接下载，并放入对应的文件夹中 
+由于代码的相关文件体积太大，我们将其存放在google云盘上，请在此链接下载，并放入对应的文件夹中  
 文件地址:https://drive.google.com/drive/folders/1Bo5QrEdWOvTFKklnI5d99hYdwCWZXISG?usp=sharing
 确保你的shopee数据集放在shopee-product-matching  
 确保你的shopee的image的embedding结果放在shopee-price-match-guarantee-embeddings  
