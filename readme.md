@@ -4,11 +4,11 @@ Shopee - Price Match Guarantee
 https://www.kaggle.com/c/shopee-product-matching
 
 # Group Member
-ZHANG Zhenhong
-HUANG Zheming
-ZHOU Hongji
-HUANG Heyang
-ZHANG Jian
+ZHANG Zhenhong  
+HUANG Zheming  
+ZHOU Hongji  
+HUANG Heyang  
+ZHANG Jian  
 
 # Introduction
 Finding duplicates in large data sets is a problem for many online businesses. Kaggle wants to determine which products have been repeatedly released and analyze project requirements. We know that the core of the problem is that we need to train a model to find images with similar images. What are there? This indicates whether the image is duplicated.  
