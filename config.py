@@ -2,10 +2,12 @@
 import pandas as pd
 import torch
 
+
 pd.set_option('display.max_columns', 1000000)
 pd.set_option('display.max_rows', 1000000)
 pd.set_option('display.max_colwidth', 1000000)
 pd.set_option('display.width', 1000000)
+
 
 COMPUTE_CV = True # Whether it is only for cv calculation (cv calculation requires embedding that has been trained)
 NEIGHBORS_SEARCHING = True
@@ -20,6 +22,7 @@ class CFG:
     classes = 11014
     scale = 30
     margin = 0.5
+
     model_name = 'tf_efficientnet_b4' #Pre-trained model name
     fc_dim = 512
     img_size = 512

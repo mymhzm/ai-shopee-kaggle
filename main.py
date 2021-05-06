@@ -87,3 +87,4 @@ if __name__ == "__main__":
     print(f'THRES_METH = {THRES_METH}')
     print(f'STOP_WORDS = {STOP_WORDS}')
     print(f'IMG_COSINE = {IMG_COSINE}')
+
