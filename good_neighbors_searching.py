@@ -2,12 +2,10 @@ from config import *
 from image_func import *
 from text_func import *
 from cv_score import *
-# To find the finest neighbors
 
+# To find the finest neighbors threshold
+def threshold_searching(df, imgtxt, embeddings,LB=4.0, UB=6.0,PRINT_CHUNK=False, metric='minkowski'):
 
-def threshold_searching(df, imgtxt, embeddings,
-                        LB=4.0, UB=6.0,
-                        PRINT_CHUNK=False, metric='minkowski'):
     df1 = pd.DataFrame(columns=['target', 'pred_matches'])
     df1.target = df.target
 
