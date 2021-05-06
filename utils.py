@@ -3,19 +3,15 @@ import os
 import cv2
 import math
 import random
-
 from tqdm import tqdm
-
 import albumentations
 from albumentations.pytorch.transforms import ToTensorV2
-
 import torch
 import timm
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
 from torch.utils.data import Dataset,DataLoader
-
 import gc
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -24,7 +20,6 @@ import sklearn
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
-
 
 def read_dataset(COMPUTE_CV):
     if COMPUTE_CV:
@@ -39,7 +34,6 @@ def read_dataset(COMPUTE_CV):
 
     return df, df_cu, image_paths
 
-
 def seed_torch(seed=42):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -47,7 +41,6 @@ def seed_torch(seed=42):
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
-#seed_torch(CFG.seed)
 
 def combine_predictions(row):
     x = np.concatenate([row['image_predictions'], row['text_predictions'], row['phash_predictions']])
