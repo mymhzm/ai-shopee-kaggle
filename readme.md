@@ -29,7 +29,6 @@ image part:
 	4.1. Use the image after embedding to make KNN, and calculate the nearest top k image sets of a certain image with the help of KNN method.
 text part    
 	4.2. Use cosine similarity to match text.   
-
 5.Prepare the output result  
 submission.cvs, output an image id and the image collection closest to it, representing duplicate images.  
 	5.1. Use phash to get the perceptual hash of the image  
