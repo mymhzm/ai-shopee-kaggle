@@ -1,11 +1,11 @@
 from utils import *
 from data import ShopeeDataset
 
-# 模型结构
-# embedding方法
-# ArcMarginProduct分类方法
+# Model structure
+# embedding method
+# ArcMarginProduct Classification
 
-# 构建上层分类NN，只会在pretrainned或者finetuning时生效,
+# The construction of the upper-level classification NN will only take effect when pretrainned or finetuning
 class ArcMarginProduct(nn.Module):
     def __init__(self, in_features, out_features, scale=30.0, margin=0.50, easy_margin=False, ls_eps=0.0):
         super(ArcMarginProduct, self).__init__()
@@ -42,8 +42,7 @@ class ArcMarginProduct(nn.Module):
 
         return output, nn.CrossEntropyLoss()(output, label)
 
-
-# 构建EFF embedding结构
+# Build EFF embedding structure
 class ShopeeModel(nn.Module):
 
     def __init__(
@@ -59,7 +58,7 @@ class ShopeeModel(nn.Module):
         super(ShopeeModel, self).__init__()
         print('Building Model Backbone for {} model'.format(model_name))
 
-        # 通过timm lib载入指定模型结构
+        # Load the specified model structure through timm lib
         self.backbone = timm.create_model(model_name, pretrained=pretrained)
         in_features = self.backbone.classifier.in_features
         self.backbone.classifier = nn.Identity()
@@ -74,7 +73,7 @@ class ShopeeModel(nn.Module):
             self._init_params()
             in_features = fc_dim
 
-        # 做二分类层，目测是用来match两个embedding的
+        # Make a two-classification layer to match two embeddings
         self.final = ArcMarginProduct(
             in_features,
             n_classes,
@@ -90,8 +89,8 @@ class ShopeeModel(nn.Module):
         nn.init.constant_(self.bn.weight, 1)
         nn.init.constant_(self.bn.bias, 0)
 
-    # model(input)默认调用该函数
-    # 注意看这里，如果已经练好，直接就用features了（也就是embedding的结果）
+    # model(input)calls this function by default
+    # Pay attention to this, if the training has been completed, use features directly (that is, the result of embedding)
     def forward(self, image, label):
         features = self.extract_features(image)
         if self.training:
@@ -100,7 +99,7 @@ class ShopeeModel(nn.Module):
         else:
             return features
 
-    # 在forward函数中，通过model(input)进行调用
+    # In the forward function, call through model(input)
     def extract_features(self, x):
         batch_size = x.shape[0]
         x = self.backbone(x)
@@ -112,8 +111,7 @@ class ShopeeModel(nn.Module):
             x = self.bn(x)
         return x
 
-
-# ？处理图片描述信息
+# Processing picture description information
 def get_test_transforms():
     return albumentations.Compose([
         albumentations.Resize(CFG.img_size, CFG.img_size, always_apply=True),
@@ -121,12 +119,10 @@ def get_test_transforms():
         ToTensorV2(p=1.0)
     ])
 
-
-# image embedding 流程方法
+# image embedding
 def get_image_embeddings(image_paths):
 
     model = ShopeeModel(pretrained=False).to(CFG.device)
-    #
     model.load_state_dict(torch.load(CFG.model_path))
     model.eval()
 
@@ -150,9 +146,8 @@ def get_image_embeddings(image_paths):
     print(f'Our image embeddings shape is {image_embeddings.shape}')
     return image_embeddings
 
-
-# 把embedding后的图形进行KNN匹配
-# KNN一般用来做分类，但是但是但是这里是借用了KNN的方法，来计算某个image最近的topk个image是哪些。
+# KNN matching the embedding image
+# Remarks: KNN is generally used for classification, here is the method of borrowing KNN to calculate the top k images of a certain image.
 def get_image_neighbors(df, embeddings, KNN=100, threshold=4.5, metric='minkowski'):
     if metric == 'cosine':
         model = NearestNeighbors(n_neighbors=KNN, metric=metric, n_jobs=8)
